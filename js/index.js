@@ -1,10 +1,40 @@
 const headerText = document.querySelector("h1");
 
 //Search content
-const monthInput = document.querySelector("#month");
-const dayInput = document.querySelector("#day");
+const monthInput = document.querySelector("#months");
+const dayInput = document.querySelector("#days");
 const submitButton = document.querySelector("#submit-button");
 
+//populate month and day lists
+const months = ["January", "February", "March", 
+                    "April", "May", "June", 
+                    "July", "August", "September", 
+                 "October", "November", "December"];
+
+
+
+                 
+(function populateMonths (){
+    for(let i = 0; i < months.length; i++){
+        const option = document.createElement("option");
+        option.value = months[i].toLowerCase();
+        option.textContent = months[i];
+        monthInput.appendChild = option;
+    }
+}) ();
+
+//need custom input
+(function populateDays (){
+    for(let i = 0; i < months.length; i++){
+        const option = document.createElement("option");
+        option.value = months[i].toLowerCase();
+        option.textContent = months[i];
+        monthInput.appendChild = option;
+    }
+}) ();
+
+
+//
 const disableSearch = () => {
     monthInput.disabled = true;
     dayInput.disabled = true;
@@ -18,9 +48,7 @@ const enableSearch = () => {
 };
 
 const isInputEmpty = (monthInput, dayInput) =>{
-    if( (!monthInput || monthInput === "") || (!dayInput || dayInput === "")){
-        return true;
-    }
+    if(monthInput == "month" || dayInput == "day") return true;
 };
 
 

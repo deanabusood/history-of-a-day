@@ -2,6 +2,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -11,7 +13,8 @@ body {
 }
 
 #header {
-  color: rgb(184, 182, 154);
+  margin-top: 20px;
+  color: rgb(206, 202, 148);
 }
 
 .container {
@@ -29,6 +32,12 @@ body {
 
   margin: 15px 0;
 }
+
+/* #day,
+#month {
+  text-align: center;
+  width: 100px;
+} */
 
 #submit-button {
   color: rgb(0, 0, 0);

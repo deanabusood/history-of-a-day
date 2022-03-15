@@ -13,16 +13,18 @@
       <h1 id="header">Travel to history with a quick search!</h1>
       <img src="./img/world.jpg" alt="" id="world" />
 
-      <fieldset>
-        <legend>What time would you like to visit?</legend>
-        <label for="month">Month</label>
-        <input type="text" name="month" id="month" />
+      <form action="">
+        <span>
+          <select id="months" name="months">
+            <option value="month">Month</option>
+          </select>
+        </span>
 
-        <label for="day">Day</label>
-        <input type="text" name="day" id="day" />
-
-        <button type="button" id="submit-button">Search</button>
-      </fieldset>
+        <span>
+          <select name="days" id="days"></select>
+        </span>
+        <button type="submit" id="submit-button">Search</button>
+      </form>
     </div>
 
     <div id="output">
