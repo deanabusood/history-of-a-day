@@ -1,11 +1,10 @@
+//header content
 const headerText = document.querySelector("h1");
 
-//Search content
+//input content
 const monthInput = document.querySelector("#months");
 const dayInput = document.querySelector("#days");
-const submitButton = document.querySelector("#submit-button");
 
-//populate month and day lists
 const months = ["January", "February", "March", 
                     "April", "May", "June", 
                     "July", "August", "September", 
@@ -53,9 +52,18 @@ function populateDays (month){
     }
 };
 
+//search content
+const submitButton = document.querySelector("#submit-button");
+submitButton.addEventListener("click", () =>{
+    if(isInputEmpty()) return;
+    
+    getData();
+});
 
+const isInputEmpty = () =>{
+    return !dayInput.value || !monthInput.value;
+};
 
-//
 const disableSearch = () => {
     monthInput.disabled = true;
     dayInput.disabled = true;
@@ -68,8 +76,17 @@ const enableSearch = () => {
     submitButton.disabled = false;
 };
 
-const isInputEmpty = (monthInput, dayInput) =>{
-    if(monthInput == "" || dayInput == "") return true;
+const getData = async () =>{
+    const userInputMonth = monthInput.value;
+    const userInputDay = "0"+dayInput.value;
+
+    APIparameters.gsrsearch = userInputMonth+" "+userInputDay;
+    disableSearch();
+    const APIendpoint = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${userInputMonth}/${userInputDay}`;
+   const { data } = await axios.get(APIendpoint); //{params: APIparameters}
+
+    // outputContainer.textContent = "";
+    console.log(data)
 };
 
 
@@ -85,3 +102,16 @@ const clearOutput = () => {
 const showError = (error) => {
     error.textContent = "An error occurred, please try again."
 };
+
+//API content
+// const APIparameters = {
+//     action: "query",
+//     format: "json",
+//     origin: "*",
+//     prop: "extracts",
+//     exchars: 250,
+//     exintro: true,
+//     explaintext: true,
+//     generator: "search",
+//     gsrlimit: 20,
+// };

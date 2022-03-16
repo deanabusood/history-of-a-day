@@ -8,14 +8,23 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-body {
+/* body {
   background-color: rgb(85, 111, 111);
-}
+} */
 
 #header {
   margin-top: 20px;
-  color: rgb(206, 202, 148);
+  color: rgb(196, 191, 191);
+  font-weight: 900;
 }
+
+/* .background-image {
+  background-image: url("./img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 100vh;
+} */
 
 .container {
   display: flex;
@@ -23,18 +32,14 @@ body {
   justify-content: center;
   align-items: center;
 
+  height: 60%;
+  opacity: 100%;
+
   gap: 20px;
 }
 
-#world {
-  height: auto;
-  width: 500px;
-
-  margin: 15px 0;
-}
-
-/* #day,
-#month {
+/* #days,
+#months {
   text-align: center;
   width: 100px;
 } */
