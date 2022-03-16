@@ -80,10 +80,12 @@ const getData = async () =>{
     const userInputMonth = monthInput.value;
     const userInputDay = "0"+dayInput.value;
 
-    APIparameters.gsrsearch = userInputMonth+" "+userInputDay;
+    // APIparameters.gsrsearch = userInputMonth+" "+userInputDay;
     disableSearch();
-    const APIendpoint = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${userInputMonth}/${userInputDay}`;
-   const { data } = await axios.get(APIendpoint); //{params: APIparameters}
+    // const APIendpoint = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${userInputMonth}/${userInputDay}`;
+    // const APIendpoint = "https://en.wikipedia.org/w/api.php";
+    const APIendpoint = "https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/01/02";
+    const { data } = await axios.get(APIendpoint);
 
     // outputContainer.textContent = "";
     console.log(data)
