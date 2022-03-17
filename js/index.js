@@ -5,15 +5,16 @@ const headerText = document.querySelector("h1");
 const monthInput = document.querySelector("#months");
 const dayInput = document.querySelector("#days");
 
-const months = ["January", "February", "March", 
+const months = ["Placeholder", 
+                    "January", "February", "March", 
                     "April", "May", "June", 
                     "July", "August", "September", 
                  "October", "November", "December"];
            
 (function populateMonths (){
-    for(let i = 0; i < months.length; i++){
+    for(let i = 1; i < months.length; i++){
         const option = document.createElement("option");
-        option.value = months[i].toLowerCase();
+        option.value = i;
         option.textContent = months[i];
        
         option.addEventListener("click", () =>{
@@ -31,15 +32,15 @@ function populateDays (month){
     let numDays;
 
     switch(month){
-        case "january": case "march": case "may": case "july": 
-        case "august":  case "october": case "december":
+        case "1": case "3": case "5": case "7": 
+        case "8":  case "10": case "12":
             numDays = 31;
             break;
-        case "april": case "june": 
-        case "september": case "november":
+        case "4": case "6": 
+        case "9": case "11":
             numDays = 30;
             break;
-        case "february":
+        case "2":
             numDays = 29;
             break;
     }
@@ -77,17 +78,14 @@ const enableSearch = () => {
 };
 
 const getData = async () =>{
-    const userInputMonth = monthInput.value;
+    const userInputMonth = "0"+monthInput.value;
     const userInputDay = "0"+dayInput.value;
 
-    // APIparameters.gsrsearch = userInputMonth+" "+userInputDay;
     disableSearch();
-    // const APIendpoint = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${userInputMonth}/${userInputDay}`;
-    // const APIendpoint = "https://en.wikipedia.org/w/api.php";
-    const APIendpoint = "https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/01/02";
+    
+    const APIendpoint = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${userInputMonth}/${userInputDay}`;
     const { data } = await axios.get(APIendpoint);
 
-    // outputContainer.textContent = "";
     console.log(data)
 };
 
@@ -105,6 +103,10 @@ const showError = (error) => {
     error.textContent = "An error occurred, please try again."
 };
 
+
+
+
+
 //API content
 // const APIparameters = {
 //     action: "query",
@@ -117,3 +119,4 @@ const showError = (error) => {
 //     generator: "search",
 //     gsrlimit: 20,
 // };
+// APIparameters.gsrsearch = userInputMonth+" "+userInputDay;

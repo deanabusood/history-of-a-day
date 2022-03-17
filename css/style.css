@@ -4,38 +4,25 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
-
-/* body {
-  background-color: rgb(85, 111, 111);
-} */
 
 #header {
   margin-top: 20px;
+  padding: 50px;
+
   color: rgb(196, 191, 191);
   font-weight: 900;
 }
-
-/* .background-image {
-  background-image: url("./img/background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  height: 100vh;
-} */
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 
   height: 60%;
-  opacity: 100%;
-
-  gap: 20px;
 }
 
 /* #days,
