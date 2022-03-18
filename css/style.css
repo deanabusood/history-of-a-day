@@ -8,6 +8,14 @@
   font-family: "Courier New", Courier, monospace;
 }
 
+body {
+  background-image: url("./img/time.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 100vh;
+}
+
 #header {
   margin-top: 20px;
   padding: 50px;

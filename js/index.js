@@ -15,8 +15,6 @@ const months = ["Placeholder",
 (function populateMonths (){
     for(let i = 1; i < months.length; i++){
         const option = document.createElement("option");
-       
-        // option.value = months[i].toLowerCase();
         option.value = i;
         
         option.textContent = months[i];
@@ -113,108 +111,42 @@ const getData = async () =>{
 };
 
 const gatherData = (data) => {
-    console.log(data.events.length);
-   
-
-    // const test = [];
-    // test.push(data.events[0].pages[0].normalizedtitle);
-    // // results.add(data.events[0].pages[0].normalizedtitle);
-    // console.log(test);
-    
-    // //working
-    // console.log(data.events[0].pages[0].normalizedtitle); //normalizedtitle
-    // console.log(data.events[0].text);
-    // console.log(data.events[0].pages[0].content_urls.desktop.page);
-    // const image = document.createElement("img");
-    // // image.src = data.events[0].pages[0].originalimage.source;
-    // image.src = data.events[0].pages[0].thumbnail.source;
-    // outputContainer.appendChild(image);
-
-    // console.log(data.events[4].pages[0].normalizedtitle); //normalizedtitle
-    // console.log(data.events[4].text);
-    // console.log(data.events[4].pages[0].content_urls.desktop.page);
-    // const image2 = document.createElement("img");
-    // image2.src = data.events[4].pages[0].originalimage.source;
-    // outputContainer.appendChild(image2);
-
-    // const results = data.map(result => ({
-    //     title: data.events[0].pages[0].normalizedtitle
-
-    // }));
-
     const results = [];
+    results.length = 0;
     let eventCount = 0;
-    while(eventCount < 3){ //make only top 3 results
-        let index = Math.floor(Math.random() * data.events.length);
+
+    const length = data.events.length >= 100 ? 100 : data.events.length;
+
+    while(eventCount < 5){ //get 5 random results
+        let index = Math.floor(Math.random() * length);
+        console.log(index);
         //need to check for duplicate here
 
         let event = {
             title: data.events[index].pages[0].normalizedtitle,
             text: data.events[index].text,
             url: data.events[index].pages[0].content_urls.desktop.page,
-            image: data.events[index].pages[0].originalimage.source,
+            image: "thumbnail" in data.events[index].pages[0] ? data.events[index].pages[0].thumbnail.source : "./img/time.jpg", //placeholder if no image found
         }
         results.push(event);
         eventCount++;
     }
-    
+
     console.log(results);
-        
-
-    
 
 
 
-    // const image = document.createElement("img");
-    // image.src = data.events[0].pages[0].originalimage.source;
-    // outputContainer.appendChild(image);
-
-    // const image2 = document.createElement("img");
-    // image2.src = data.events[0].pages[0].originalimage.source;
-    // outputContainer.appendChild(image2);
-
-    // const image4 = document.createElement("img");
-    // image4.src = data.events[0].pages[0].originalimage.source;
-    // outputContainer.appendChild(image4);
-    //
-
-    // const results = (data).map(page => ({
-    //         // page_url: page.pageid,
-    //         year: page.year,
-    //         text: page.text,
-    //     }));
-
-    // const results = Object.values(data).map(event => ({
-    //     title: data.pages[0].normalizedtitle,
-    //     text: data.text,
-    //     url: data.pages[0].content_urls.desktop.page,
-    //     image: data.pages[0].originalimage.source,
-    // }));
-    
-    // console.table(results);
-
-
-    
-
-    // const image = document.createElement("img");
-    // image.src = results[0].image;
-    // outputContainer.appendChild(image);
-
-    // const image3 = document.createElement("img");
-    // image3.src = data.events[0].pages[0].originalimage.source;
-    // outputContainer.appendChild(image3);
-
-    //array of objects
-    // const results = (data).map(page => ({
-    //     // page_url: page.pageid,
-    //     year: page.year,
-    //     text: page.text,
-    // }));
-
-    
+    // const imageTest = document.createElement("img");
+    // // imageTest.src = results[0].image;
+    // imageTest.src = "./img/time.jpg";
+    // outputContainer.appendChild(imageTest);
 
     // showResults(results);
 };
+
+// function containsDuplicate(array, event){
+//     return array.some(event => )
+// }
 
 //Output content
 const outputContainer = document.querySelector("#output");
@@ -228,20 +160,3 @@ const clearOutput = () => {
 const showError = (error) => {
     error.textContent = "An error occurred, please try again."
 };
-
-const showResults = results => {
-
-    results.forEach(result => {
-        const output = document.createElement("div");
-
-
-
-        outputContainer.appendChild();
-        ;
-    });
-};
-// <a href="https://en.wikipedia.org/?curid=${result.page_url}" target="_blank" class="card animated bounceInUp">
-
-
-
-
