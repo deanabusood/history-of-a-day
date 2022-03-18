@@ -113,14 +113,14 @@ const getData = async () =>{
 const gatherData = (data) => {
     const results = [];
     results.length = 0;
+    const duplicateCheck = [];
+    
     let eventCount = 0;
-
-    const length = data.events.length >= 100 ? 100 : data.events.length;
-
     while(eventCount < 5){ //get 5 random results
-        let index = Math.floor(Math.random() * length);
+        let index = Math.floor(Math.random() * data.events.length);
         console.log(index);
-        //need to check for duplicate here
+        if(!duplicateCheck.includes(index)){
+            duplicateCheck.push(index);
 
         let event = {
             title: data.events[index].pages[0].normalizedtitle,
@@ -130,6 +130,7 @@ const gatherData = (data) => {
         }
         results.push(event);
         eventCount++;
+        }
     }
 
     console.log(results);
