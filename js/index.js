@@ -119,7 +119,8 @@ const gatherData = (data) => {
     while(eventCount < 5){ //get 5 random results
         let index = Math.floor(Math.random() * data.events.length);
         console.log(index);
-        if(!duplicateCheck.includes(index)){
+
+        if(!containsDuplicate(duplicateCheck, index)){ //checks for duplicate
             duplicateCheck.push(index);
 
         let event = {
@@ -145,9 +146,9 @@ const gatherData = (data) => {
     // showResults(results);
 };
 
-// function containsDuplicate(array, event){
-//     return array.some(event => )
-// }
+function containsDuplicate(array, index){
+    return array.includes(index);
+}
 
 //Output content
 const outputContainer = document.querySelector("#output");
