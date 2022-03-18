@@ -80,6 +80,7 @@ const enableSearch = () => {
     submitButton.disabled = false;
 };
 
+//ZERO PADDED
 function getUserMonth(){
     return monthInput.value < 10 ? "0"+monthInput.value : monthInput.value;
 }
@@ -94,38 +95,120 @@ const getData = async () =>{
     const APIendpoint = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${userInputMonth}/${userInputDay}`;
 
     disableSearch();
+    clearOutput();
     
     try{
      const {data} = await axios.get(APIendpoint);
-     console.log(data);
 
     if(data.error){
         throw new Error("error");
     }    
-    gatherData(data.query.pages);
+    gatherData(data);
 
     } catch(error){  
         showError(error);
     }finally{
-        enableSearch();
-        
+        enableSearch();   
     } 
-    gatherData();
-    
-    // console.log(data.events.text);
 };
 
-const gatherData = pages => {
+const gatherData = (data) => {
+    console.log(data.events.length);
+   
 
-    outputContainer.textContent = dayInput.value;
-    // const results = Object.values(pages);
-    // console.log(results);
-    // // console.log(Object.values(pages));
+    // const test = [];
+    // test.push(data.events[0].pages[0].normalizedtitle);
+    // // results.add(data.events[0].pages[0].normalizedtitle);
+    // console.log(test);
+    
+    // //working
+    // console.log(data.events[0].pages[0].normalizedtitle); //normalizedtitle
+    // console.log(data.events[0].text);
+    // console.log(data.events[0].pages[0].content_urls.desktop.page);
+    // const image = document.createElement("img");
+    // // image.src = data.events[0].pages[0].originalimage.source;
+    // image.src = data.events[0].pages[0].thumbnail.source;
+    // outputContainer.appendChild(image);
 
-    // const results = (pages).map(page => ({
-    //     page_url: page.pageid,
-    //     title: page.title,
-    //     content: page.extract,
+    // console.log(data.events[4].pages[0].normalizedtitle); //normalizedtitle
+    // console.log(data.events[4].text);
+    // console.log(data.events[4].pages[0].content_urls.desktop.page);
+    // const image2 = document.createElement("img");
+    // image2.src = data.events[4].pages[0].originalimage.source;
+    // outputContainer.appendChild(image2);
+
+    // const results = data.map(result => ({
+    //     title: data.events[0].pages[0].normalizedtitle
+
+    // }));
+
+    const results = [];
+    let eventCount = 0;
+    while(eventCount < 3){ //make only top 3 results
+        let index = Math.floor(Math.random() * data.events.length);
+        //need to check for duplicate here
+
+        let event = {
+            title: data.events[index].pages[0].normalizedtitle,
+            text: data.events[index].text,
+            url: data.events[index].pages[0].content_urls.desktop.page,
+            image: data.events[index].pages[0].originalimage.source,
+        }
+        results.push(event);
+        eventCount++;
+    }
+    
+    console.log(results);
+        
+
+    
+
+
+
+    // const image = document.createElement("img");
+    // image.src = data.events[0].pages[0].originalimage.source;
+    // outputContainer.appendChild(image);
+
+    // const image2 = document.createElement("img");
+    // image2.src = data.events[0].pages[0].originalimage.source;
+    // outputContainer.appendChild(image2);
+
+    // const image4 = document.createElement("img");
+    // image4.src = data.events[0].pages[0].originalimage.source;
+    // outputContainer.appendChild(image4);
+    //
+
+    // const results = (data).map(page => ({
+    //         // page_url: page.pageid,
+    //         year: page.year,
+    //         text: page.text,
+    //     }));
+
+    // const results = Object.values(data).map(event => ({
+    //     title: data.pages[0].normalizedtitle,
+    //     text: data.text,
+    //     url: data.pages[0].content_urls.desktop.page,
+    //     image: data.pages[0].originalimage.source,
+    // }));
+    
+    // console.table(results);
+
+
+    
+
+    // const image = document.createElement("img");
+    // image.src = results[0].image;
+    // outputContainer.appendChild(image);
+
+    // const image3 = document.createElement("img");
+    // image3.src = data.events[0].pages[0].originalimage.source;
+    // outputContainer.appendChild(image3);
+
+    //array of objects
+    // const results = (data).map(page => ({
+    //     // page_url: page.pageid,
+    //     year: page.year,
+    //     text: page.text,
     // }));
 
     
@@ -146,19 +229,18 @@ const showError = (error) => {
     error.textContent = "An error occurred, please try again."
 };
 
-// const showResults = results => {
+const showResults = results => {
 
-//     results.forEach(result => {
-//         outputContainer.innerHTML += `
-//         <div class="results__item">
-//             <a href="https://en.wikipedia.org/?curid=${result.page_url}" target="_blank" class="card animated bounceInUp">
-//                 <h2 class="results__item__title">${result.title}</h2>
-//                 <p class="results__item__intro">${result.content}</p>
-//             </a>
-//         </div>
-//     `;
-//     });
-// };
+    results.forEach(result => {
+        const output = document.createElement("div");
+
+
+
+        outputContainer.appendChild();
+        ;
+    });
+};
+// <a href="https://en.wikipedia.org/?curid=${result.page_url}" target="_blank" class="card animated bounceInUp">
 
 
 

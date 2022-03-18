@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border: 0;
   font-family: "Courier New", Courier, monospace;
 }
 
@@ -22,6 +23,7 @@
   align-items: center;
   gap: 20px;
 
+  min-width: 100vw;
   height: 60%;
 }
 
@@ -33,4 +35,9 @@
 
 #submit-button {
   color: rgb(0, 0, 0);
+}
+
+img {
+  height: 200px;
+  width: 200px;
 }
