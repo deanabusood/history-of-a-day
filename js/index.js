@@ -5,18 +5,21 @@ const headerText = document.querySelector("h1");
 const monthInput = document.querySelector("#months");
 const dayInput = document.querySelector("#days");
 
-const months = ["Placeholder", 
+const months = ["Placeholder",
                     "January", "February", "March", 
                     "April", "May", "June", 
                     "July", "August", "September", 
-                 "October", "November", "December"];
+                 "October", "November", "December"
+                ];
            
 (function populateMonths (){
     for(let i = 1; i < months.length; i++){
         const option = document.createElement("option");
-        option.value = i;
-        option.textContent = months[i];
        
+        // option.value = months[i].toLowerCase();
+        option.value = i;
+        
+        option.textContent = months[i];
         option.addEventListener("click", () =>{
             populateDays(option.value);
         });
@@ -29,8 +32,8 @@ function populateDays (month){
     while(dayInput.firstChild){
         dayInput.removeChild(dayInput.firstChild);
     }
-    let numDays;
 
+    let numDays;
     switch(month){
         case "1": case "3": case "5": case "7": 
         case "8":  case "10": case "12":
@@ -77,18 +80,58 @@ const enableSearch = () => {
     submitButton.disabled = false;
 };
 
+function getUserMonth(){
+    return monthInput.value < 10 ? "0"+monthInput.value : monthInput.value;
+}
+
+function getUserDay(){
+     return dayInput.value < 10 ? "0"+dayInput.value : dayInput.value;
+}
+
 const getData = async () =>{
-    const userInputMonth = "0"+monthInput.value;
-    const userInputDay = "0"+dayInput.value;
+    const userInputMonth = getUserMonth();
+    const userInputDay = getUserDay();
+    const APIendpoint = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${userInputMonth}/${userInputDay}`;
 
     disableSearch();
     
-    const APIendpoint = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${userInputMonth}/${userInputDay}`;
-    const { data } = await axios.get(APIendpoint);
+    try{
+     const {data} = await axios.get(APIendpoint);
+     console.log(data);
 
-    console.log(data)
+    if(data.error){
+        throw new Error("error");
+    }    
+    gatherData(data.query.pages);
+
+    } catch(error){  
+        showError(error);
+    }finally{
+        enableSearch();
+        
+    } 
+    gatherData();
+    
+    // console.log(data.events.text);
 };
 
+const gatherData = pages => {
+
+    outputContainer.textContent = dayInput.value;
+    // const results = Object.values(pages);
+    // console.log(results);
+    // // console.log(Object.values(pages));
+
+    // const results = (pages).map(page => ({
+    //     page_url: page.pageid,
+    //     title: page.title,
+    //     content: page.extract,
+    // }));
+
+    
+
+    // showResults(results);
+};
 
 //Output content
 const outputContainer = document.querySelector("#output");
@@ -103,20 +146,20 @@ const showError = (error) => {
     error.textContent = "An error occurred, please try again."
 };
 
+// const showResults = results => {
 
-
-
-
-//API content
-// const APIparameters = {
-//     action: "query",
-//     format: "json",
-//     origin: "*",
-//     prop: "extracts",
-//     exchars: 250,
-//     exintro: true,
-//     explaintext: true,
-//     generator: "search",
-//     gsrlimit: 20,
+//     results.forEach(result => {
+//         outputContainer.innerHTML += `
+//         <div class="results__item">
+//             <a href="https://en.wikipedia.org/?curid=${result.page_url}" target="_blank" class="card animated bounceInUp">
+//                 <h2 class="results__item__title">${result.title}</h2>
+//                 <p class="results__item__intro">${result.content}</p>
+//             </a>
+//         </div>
+//     `;
+//     });
 // };
-// APIparameters.gsrsearch = userInputMonth+" "+userInputDay;
+
+
+
+
