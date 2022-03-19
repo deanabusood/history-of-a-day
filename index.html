@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel through Time</title>
     <link rel="stylesheet" href="./css/style.css" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/index.js" defer></script>
   </head>
   <body>
@@ -16,7 +15,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         position: relative;
-        height: 100vh;
+        min-height: 100vh;
       }
     </style>
 
@@ -35,6 +34,7 @@
             <option value="" disabled selected>Day</option>
           </select>
         </span>
+
         <button type="button" id="submit-button">Search</button>
       </form>
     </div>
@@ -42,5 +42,7 @@
     <div id="output">
       <span id="error"></span>
     </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>

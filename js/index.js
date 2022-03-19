@@ -87,6 +87,7 @@ function getUserDay(){
      return dayInput.value < 10 ? "0"+dayInput.value : dayInput.value;
 }
 
+//API fetch
 const getData = async () =>{
     const userInputMonth = getUserMonth();
     const userInputDay = getUserDay();
@@ -110,15 +111,18 @@ const getData = async () =>{
     } 
 };
 
-// uses JSON API data to store in unique object array
+function containsDuplicate(array, index){
+    return array.includes(index);
+}
+
+// stores data in unique object array
 const gatherData = (data) => {
     const results = [];
     const duplicateCheck = [];
     
     let eventCount = 0;
-    while(eventCount < 5){ //get 5 random results
+    while(eventCount < 4){ //get 4 random results
         let index = Math.floor(Math.random() * data.events.length);
-        console.log(index);
 
         if(!containsDuplicate(duplicateCheck, index)){ //checks for duplicate
             duplicateCheck.push(index);
@@ -143,6 +147,7 @@ const showResults = (results =>{
         container.classList.add("event-container");
 
         let imageDiv = document.createElement("div");
+        imageDiv.classList.add("event-image-container");
 
         let link = document.createElement("a");
         link.href = results[i].url;
@@ -155,50 +160,22 @@ const showResults = (results =>{
         
         link.appendChild(image);
         imageDiv.appendChild(link);
-        //
         container.appendChild(imageDiv);
-
+       
         let title = document.createElement("h3");
+        title.classList.add("event-title");
         title.innerText = results[i].title;
         container.appendChild(title);
 
         let text = document.createElement("p");
+        text.classList.add("event-text");
         text.innerText = results[i].text;
         container.appendChild(text);
 
-        
-
         outputContainer.appendChild(container);
-
     }
 
 });
-
-// const showResults = (results.map(item =>{
-//         let div = document.createElement("div");
-
-//         let title = document.createElement("h4");
-//         title.innerText = results[i].title;
-//         div.appendChild(title);
-
-//         let text = document.createElement("p");
-//         text.innerText = results[i].text;
-//         div.appendChild(text);
-
-//         let image = document.createElement("img");
-//         image.src = results[i].image;
-//         div.appendChild(image);
-
-//         outputContainer.appendChild(div);
-
-// }));
-
-
-
-
-function containsDuplicate(array, index){
-    return array.includes(index);
-}
 
 //Output content
 const outputContainer = document.querySelector("#output");
