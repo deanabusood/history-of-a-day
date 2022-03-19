@@ -119,8 +119,6 @@ function containsDuplicate(array, index){
 const gatherData = (data) => {
     const results = [];
     const duplicateCheck = [];
-
-    console.log(data);
     
     let eventCount = 0;
     while(eventCount < 6){ //get 6 random results
