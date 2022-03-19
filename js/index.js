@@ -166,7 +166,11 @@ const showResults = (results =>{
         //lower half v (title, year, text)
         let title = document.createElement("h3");
         title.classList.add("event-title");
-        title.innerText = results[i].title+" "+results[i].year;
+        title.innerText = results[i].title;
+        if(!title.innerText.includes(results[i].year)){
+            title.innerText += " ("+results[i].year+")"; //add year only if not present
+        }
+
         container.appendChild(title);
 
         let text = document.createElement("p");
