@@ -119,9 +119,11 @@ function containsDuplicate(array, index){
 const gatherData = (data) => {
     const results = [];
     const duplicateCheck = [];
+
+    console.log(data);
     
     let eventCount = 0;
-    while(eventCount < 4){ //get 4 random results
+    while(eventCount < 6){ //get 6 random results
         let index = Math.floor(Math.random() * data.events.length);
 
         if(!containsDuplicate(duplicateCheck, index)){ //checks for duplicate
@@ -129,6 +131,7 @@ const gatherData = (data) => {
 
         let event = {
             title: data.events[index].pages[0].normalizedtitle,
+            year: data.events[index].year,
             text: data.events[index].text,
             url: data.events[index].pages[0].content_urls.desktop.page,
             image: "thumbnail" in data.events[index].pages[0] ? data.events[index].pages[0].thumbnail.source : "./img/no-image-found.png", //placeholder if no image found
@@ -161,10 +164,11 @@ const showResults = (results =>{
         link.appendChild(image);
         imageDiv.appendChild(link);
         container.appendChild(imageDiv);
-       
+        //upper half ^ (image + link)
+        //lower half v (title, year, text)
         let title = document.createElement("h3");
         title.classList.add("event-title");
-        title.innerText = results[i].title;
+        title.innerText = results[i].title+" "+results[i].year;
         container.appendChild(title);
 
         let text = document.createElement("p");
