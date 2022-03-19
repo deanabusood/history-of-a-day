@@ -52,11 +52,7 @@ form {
   background: rgb(196, 191, 191);
 }
 
-/* #submit-button {
-  width: 75px;
-  color: rgb(0, 0, 0);
-} */
-
+/* everything below the input + search */
 #output {
   display: flex;
   flex-wrap: wrap;
