@@ -60,6 +60,7 @@ submitButton.addEventListener("click", () =>{
     if(isInputEmpty()) return;
     
     getData();
+
 });
 
 const isInputEmpty = () =>{

@@ -9,10 +9,10 @@
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 #header {
-  margin-top: 20px;
   padding: 50px;
 
   color: rgb(196, 191, 191);
@@ -30,15 +30,32 @@
   margin-bottom: 50px;
 }
 
-/* #days,
-#months {
-  text-align: center;
-  width: 100px;
-} */
+/* input and button #days, */
+form {
+  display: flex;
+  margin-top: -20px;
+  gap: 10px;
 
-#submit-button {
-  color: rgb(0, 0, 0);
+  position: relative;
 }
+
+#months,
+#days,
+#submit-button {
+  width: 7rem;
+  height: 1rem;
+
+  padding: 1px;
+  border-radius: 50px;
+
+  text-align: center;
+  background: rgb(196, 191, 191);
+}
+
+/* #submit-button {
+  width: 75px;
+  color: rgb(0, 0, 0);
+} */
 
 #output {
   display: flex;
@@ -50,14 +67,14 @@
 
 .event-container {
   position: relative;
-  height: 570px;
-  width: 270px;
+  height: 565px;
+  width: 305px;
 
   box-shadow: 0 30px 30px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   border-radius: 10px;
 
-  background-color: rgb(255, 255, 255);
+  background: rgb(196, 191, 191);
 }
 
 .event-container::before {
