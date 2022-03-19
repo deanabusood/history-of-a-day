@@ -127,7 +127,7 @@ const gatherData = (data) => {
             title: data.events[index].pages[0].normalizedtitle,
             text: data.events[index].text,
             url: data.events[index].pages[0].content_urls.desktop.page,
-            image: "thumbnail" in data.events[index].pages[0] ? data.events[index].pages[0].thumbnail.source : "./img/time.jpg", //placeholder if no image found
+            image: "thumbnail" in data.events[index].pages[0] ? data.events[index].pages[0].thumbnail.source : "./img/no-image-found.png", //placeholder if no image found
         }
         results.push(event);
         eventCount++;
@@ -139,8 +139,10 @@ const gatherData = (data) => {
 
 const showResults = (results =>{
     for(let i = 0; i < results.length; i++){
-        let div = document.createElement("div");
-        div.classList.add("event-card");
+        let container = document.createElement("div");
+        container.classList.add("event-container");
+
+        let imageDiv = document.createElement("div");
 
         let link = document.createElement("a");
         link.href = results[i].url;
@@ -152,19 +154,21 @@ const showResults = (results =>{
         image.classList.add("event-image");
         
         link.appendChild(image);
-        div.appendChild(link);
+        imageDiv.appendChild(link);
+        //
+        container.appendChild(imageDiv);
 
-        let title = document.createElement("h4");
+        let title = document.createElement("h3");
         title.innerText = results[i].title;
-        div.appendChild(title);
+        container.appendChild(title);
 
         let text = document.createElement("p");
         text.innerText = results[i].text;
-        div.appendChild(text);
+        container.appendChild(text);
 
         
 
-        outputContainer.appendChild(div);
+        outputContainer.appendChild(container);
 
     }
 
