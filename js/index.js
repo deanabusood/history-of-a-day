@@ -168,7 +168,7 @@ const showResults = (results =>{
         title.classList.add("event-title");
         title.innerText = results[i].title;
         if(!title.innerText.includes(results[i].year)){
-            title.innerText += " ("+results[i].year+")"; //add year only if not present
+            title.innerText += " ("+results[i].year+")"; //append year only if not already present
         }
 
         container.appendChild(title);
