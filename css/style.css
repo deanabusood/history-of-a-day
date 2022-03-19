@@ -8,14 +8,6 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-body {
-  background-image: url("./img/time.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  height: 100vh;
-}
-
 #header {
   margin-top: 20px;
   padding: 50px;
@@ -45,7 +37,30 @@ body {
   color: rgb(0, 0, 0);
 }
 
-img {
-  height: 200px;
-  width: 200px;
+#output {
+  display: flex;
+  justify-content: center;
+  margin-top: -200px;
+  gap: 50px;
+
+  padding: 100px;
+
+  text-align: center;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  /* width: 200px;
+  height: 500px; */
+
+  background-color: rgb(111, 104, 67);
+}
+
+.event-image {
+  align-self: center;
+  height: 10rem;
+  width: 12rem;
 }

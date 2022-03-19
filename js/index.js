@@ -110,9 +110,9 @@ const getData = async () =>{
     } 
 };
 
+// uses JSON API data to store in unique object array
 const gatherData = (data) => {
     const results = [];
-    results.length = 0;
     const duplicateCheck = [];
     
     let eventCount = 0;
@@ -134,17 +134,63 @@ const gatherData = (data) => {
         }
     }
 
-    console.log(results);
-
-
-
-    // const imageTest = document.createElement("img");
-    // // imageTest.src = results[0].image;
-    // imageTest.src = "./img/time.jpg";
-    // outputContainer.appendChild(imageTest);
-
-    // showResults(results);
+    showResults(results);
 };
+
+const showResults = (results =>{
+    for(let i = 0; i < results.length; i++){
+        let div = document.createElement("div");
+        div.classList.add("event-card");
+
+        let link = document.createElement("a");
+        link.href = results[i].url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+
+        let image = document.createElement("img");
+        image.src = results[i].image;
+        image.classList.add("event-image");
+        
+        link.appendChild(image);
+        div.appendChild(link);
+
+        let title = document.createElement("h4");
+        title.innerText = results[i].title;
+        div.appendChild(title);
+
+        let text = document.createElement("p");
+        text.innerText = results[i].text;
+        div.appendChild(text);
+
+        
+
+        outputContainer.appendChild(div);
+
+    }
+
+});
+
+// const showResults = (results.map(item =>{
+//         let div = document.createElement("div");
+
+//         let title = document.createElement("h4");
+//         title.innerText = results[i].title;
+//         div.appendChild(title);
+
+//         let text = document.createElement("p");
+//         text.innerText = results[i].text;
+//         div.appendChild(text);
+
+//         let image = document.createElement("img");
+//         image.src = results[i].image;
+//         div.appendChild(image);
+
+//         outputContainer.appendChild(div);
+
+// }));
+
+
+
 
 function containsDuplicate(array, index){
     return array.includes(index);
