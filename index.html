@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel through Time</title>
     <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/index.js" defer></script>
   </head>
   <body>
     <style>
@@ -23,7 +22,7 @@
       <h1 id="header">What time would you like to visit?</h1>
 
       <form action="">
-        <select id="months" name="month">
+        <select id="months" name="month" onchange="populateDays()">
           <option value="" disabled selected>Month</option>
         </select>
 
@@ -40,5 +39,6 @@
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

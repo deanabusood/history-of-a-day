@@ -18,15 +18,13 @@ const months = ["Placeholder",
         option.value = i;
         
         option.textContent = months[i];
-        option.addEventListener("click", () =>{
-            populateDays(option.value);
-        });
-
         monthInput.appendChild(option);
     }
 }) ();
 
-function populateDays (month){
+function populateDays (){
+    let month = monthInput.value;
+
     while(dayInput.firstChild){
         dayInput.removeChild(dayInput.firstChild);
     }
@@ -122,7 +120,7 @@ const gatherData = (data) => {
     const duplicateCheck = [];
     
     let eventCount = 0;
-    while(eventCount < 6){ //get 6 random results
+    while(eventCount < 4){ //get 4 random events
         let index = Math.floor(Math.random() * data.events.length);
 
         if(!containsDuplicate(duplicateCheck, index)){ //checks for duplicate

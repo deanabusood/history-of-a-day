@@ -5,11 +5,16 @@
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace, Verdana, Geneva, Tahoma,
+    sans-serif;
 
   -ms-overflow-style: none;
   scrollbar-width: none;
   scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 #header {
@@ -45,7 +50,7 @@ form {
   width: 7rem;
   height: 1rem;
 
-  padding: 1px;
+  /* padding: 1px; */
   border-radius: 50px;
 
   text-align: center;
